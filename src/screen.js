@@ -1394,10 +1394,10 @@
             }.bind(this));
         },
         new_model_position: function() {
-            var position = 0;
+            var position = -1;
             if (this.current_view && (this.current_view.view_type == 'tree') &&
-                    (this.current_view.attributes.editable == 'bottom')) {
-                position = 1;
+                    (this.current_view.attributes.editable == 'top')) {
+                position = 0;
             }
             return position;
         },
