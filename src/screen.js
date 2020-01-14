@@ -1394,6 +1394,9 @@
             }.bind(this));
         },
         get new_position() {
+            if ((this.current_view.view_type == 'tree') && (this.current_view.attributes.editable == 'top')) {
+                return 0;
+            }
             if (this.order) {
                 for (var j = 0; j < this.order.length; j++) {
                     var oexpr = this.order[j][0],

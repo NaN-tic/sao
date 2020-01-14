@@ -215,8 +215,8 @@
             this.display_size = Sao.config.display_size;
         },
         get editable() {
-            return (parseInt(this.attributes.editable || 0, 10) &&
-                !this.screen.attributes.readonly);
+          return (Boolean(this.attributes.editable) && !this.screen.attributes.readonly) ||
+              (parseInt(this.attributes.editable || 0, 10) && !this.screen.attributes.readonly);
         },
         sort_model: function(e){
             var column = e.data;
@@ -1804,7 +1804,7 @@
                                 } else if (event_.which == Sao.common.DOWN_KEYCODE) {
                                     next_row = this.el.next('tr');
                                 } else {
-                                    if (this.tree.screen.new_position == -1) {
+                                    if (this.tree.screen.new_position == -1 || this.tree.attributes.editable == 'bottom') {
                                         next_row = this.el.next('tr');
                                     } else {
                                         next_row = this.el.prev('tr');
@@ -1813,9 +1813,9 @@
                                 if (!next_row.length &&
                                     ((event_.which == Sao.common.RETURN_KEYCODE) ||
                                         ((event_.which == Sao.common.UP_KEYCODE) &&
-                                            (this.tree.screen.new_position == 0)) ||
+                                            (this.tree.screen.new_position == 0 || this.tree.attributes.editable == 'top')) ||
                                         ((event_.which == Sao.common.DOWN_KEYCODE) &&
-                                            (this.tree.screen.new_position == -1)))) {
+                                            (this.tree.screen.new_position == -1 || this.tree.attributes.editable == 'bottom')))) {
                                     var model = this.tree.screen.group;
                                     var access = Sao.common.MODELACCESS.get(
                                         this.tree.screen.model_name);
