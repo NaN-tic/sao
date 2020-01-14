@@ -1381,7 +1381,7 @@
                     prm = jQuery.when();
                 }
                 return prm.then(function() {
-                    group.add(record, this.new_position);
+                    group.add(record, this.new_model_position());
                     this.current_record = record;
                     if (previous_view.view_type == 'calendar') {
                         previous_view.set_default_date(record, selected_date);
@@ -1393,28 +1393,13 @@
                 }.bind(this));
             }.bind(this));
         },
-        get new_position() {
-            if ((this.current_view.view_type == 'tree') && (this.current_view.attributes.editable == 'top')) {
-                return 0;
+        new_model_position: function() {
+            var position = 0;
+            if (this.current_view && (this.current_view.view_type == 'tree') &&
+                    (this.current_view.attributes.editable == 'bottom')) {
+                position = 1;
             }
-            if (this.order) {
-                for (var j = 0; j < this.order.length; j++) {
-                    var oexpr = this.order[j][0],
-                        otype = this.order[j][1];
-                    if ((oexpr == 'id') && otype) {
-                        if (otype.startsWith('DESC')) {
-                            return 0;
-                        } else if (otype.startsWith('ASC')) {
-                            return -1;
-                        }
-                    }
-                }
-            }
-            if (this.group.parent) {
-                return -1;
-            } else {
-                return 0;
-            }
+            return position;
         },
         set_on_write: function(name) {
             if(name) {
