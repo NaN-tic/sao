@@ -1397,7 +1397,7 @@
             var position = 0;
             if (this.current_view && (this.current_view.view_type == 'tree') &&
                     (this.current_view.attributes.editable == 'bottom')) {
-                position = 1;
+                position = -1;
             }
             return position;
         },
