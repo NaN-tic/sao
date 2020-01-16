@@ -1154,6 +1154,9 @@
             }
             group.screens.push(this);
             this.tree_states_done = [];
+            this.views.map(function(view) {
+              view.reset();
+            });
             this.order = null;
             this.group = group;
             this.model = group.model;
@@ -1327,6 +1330,9 @@
         clear: function() {
             this.current_record = null;
             this.group.clear();
+            this.views.map(function(view) {
+             view.reset();
+            });
         },
         default_row_activate: function() {
             if ((this.current_view.view_type == 'tree') &&
