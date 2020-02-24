@@ -257,11 +257,16 @@
                    this.screen.view_name == 'calendar') {
                 element.find('.fc-time').remove();
             }
-            $(element).tooltip({title: event.title});
             element.append(event.description);
-            element.css('white-space', 'pre');
+            element.css('white-space', 'pre')
+                .css('overflow', 'hidden')
+                .css('text-overflow', 'ellipsis')
+                .attr('title', [event.title, event.description]
+                    .filter(function(e) {
+                        return e;
+                    }).join('\n'));
             var model_access = Sao.common.MODELACCESS.get(
-            	this.screen.model_name);
+                this.screen.model_name);
             if (!model_access.write) {
                 event.editable = false;
             }
