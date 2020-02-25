@@ -2293,7 +2293,16 @@
                 'class': this.class_,
                 'tabindex': 0
             });
-            cell.css('width', '100%');
+	    var width = '100%';
+	    if ('width' in this.attributes) {
+		width = this.attributes.width;
+            }
+	    cell.css('width', width);
+	    var height = '100%';
+	    if ('height' in this.attributes) {
+		height = this.attributes.height;
+            }
+	    cell.css('height', height);
             return cell;
         },
         render: function(record, cell) {
