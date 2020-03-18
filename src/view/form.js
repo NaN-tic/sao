@@ -3027,6 +3027,12 @@ function eval_pyson(value){
                 }
                 this.screen.size_limit = size_limit;
                 this.screen.display();
+                if (this.attributes.height !== undefined) {
+                  this.screen.current_view.el
+                    .find('.treeview,.list-form').first()
+                    .css('min-height', this.attributes.height + 'px')
+                    .css('max-height', this.attributes.height + 'px');
+                }
             }.bind(this));
         },
         focus: function() {
@@ -3420,6 +3426,12 @@ function eval_pyson(value){
                     this.screen.set_group(new_group);
                 }
                 this.screen.display();
+                if (this.attributes.height !== undefined) {
+                  this.screen.current_view.el
+                    .find('.treeview,.list-form').first()
+                    .css('min-height', this.attributes.height + 'px')
+                    .css('max-height', this.attributes.height + 'px');
+                }
             }.bind(this));
         },
         focus: function() {
