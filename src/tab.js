@@ -1310,6 +1310,11 @@
                             quoteChar: '"',
                             delimiter: delimiter,
                         });
+                        if (navigator.platform &&
+                            navigator.platform.slice(0, 3) == 'Win') {
+                            csv = Sao.BOM_UTF8 + csv;
+                            encoding = 'utf-8';
+                        }
                         Sao.common.download_file(
                             csv, export_.name + '.csv',
                             {'type': 'text/csv;charset=' + encoding});
