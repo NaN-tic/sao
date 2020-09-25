@@ -900,6 +900,7 @@
             "x-cp1255", "x-cp1256", "x-cp1257", "x-cp1258", "x-euc-jp", "x-gbk",
             "x-mac-cyrillic", "x-mac-roman", "x-mac-ukrainian", "x-sjis",
             "x-user-defined", "x-x-big5"];
+
             this.dialog = new Sao.Dialog(title, 'csv', 'lg');
             this.el = this.dialog.modal;
 
@@ -1796,6 +1797,11 @@
                 quoteChar: this.el_csv_quotechar.val(),
                 delimiter: this.el_csv_delimiter.val()
             });
+            if (navigator.platform &&
+                navigator.platform.slice(0, 3) == 'Win') {
+                csv = Sao.BOM_UTF8 + csv;
+                encoding = 'utf-8';
+            }
             Sao.common.download_file(
                 csv, this.name + '.csv', {type: 'text/csv;charset=' + encoding});
             return Sao.common.message.run(
