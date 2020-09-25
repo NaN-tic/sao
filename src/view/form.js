@@ -752,8 +752,8 @@ function eval_pyson(value){
                     'data-toggle': 'tab',
                     'href': '#' + tab_id
                 })
-                .append(img)
-                .text(text))
+                .text(text)
+                .prepend(img))
                 .appendTo(this.nav);
             pane.append(tab).appendTo(this.panes);
             if (!this.selected) {
@@ -3200,7 +3200,7 @@ function eval_pyson(value){
                         if (sequence) {
                             screen.group.set_sequence(sequence);
                         }
-                    };
+                    }.bind(this);
 
                     search_set();
                 }.bind(this));
