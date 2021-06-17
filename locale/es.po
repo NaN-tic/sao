@@ -274,7 +274,7 @@ msgid "Created at"
 msgstr "Creado el"
 
 msgid "Modified by"
-msgstr "Modifcador por"
+msgstr "Modificado por"
 
 msgid "Modified at"
 msgstr "Modificado el"
